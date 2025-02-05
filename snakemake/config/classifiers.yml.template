@@ -1,0 +1,32 @@
+############
+# REQUIRED #
+############
+
+taxonomy:
+  db_path: "/home/zhouan/App/BenchmarkingClassifiers/taxonomy"
+
+
+
+###############
+# CLASSIFIERS #
+###############
+
+kraken2:
+  path: "docker run --rm --user=`id -u`:`id -g` -v /home/zhouan/:/home/zhouan/ kraken2:2.1.3 kraken2" 
+  db_path: "/home/zhouan/Docker_dir/Classification/database/k2_pluspf_20240904"
+bracken: 
+  path: "/home/zhouan/Bracken/bracken"
+  db_path: "/home/zhouan/Docker_dir/Classification/database/k2_pluspf_20240904"
+
+ ################
+# DEPENDENCIES #
+################
+
+seqkit:
+  path: "/home/zhouan/miniconda3/envs/BenchmarkingClassifiers/bin/seqkit"
+
+taxonkit:
+  path: "/home/zhouan/miniconda3/envs/BenchmarkingClassifiers/bin/taxonkit"
+
+python:
+  path: "/home/zhouan/miniconda3/envs/BenchmarkingClassifiers/bin/python"
