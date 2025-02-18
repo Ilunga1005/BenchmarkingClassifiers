@@ -4,10 +4,10 @@ LABEL software="Kraken2"
 LABEL kneaddata_version="0.12.1"
 LABEL fastqc_version="0.12.1"
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install -y python3 python3-dev python3-pip apt-transport-https openjdk-8-jre wget zip && \
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y python3 python3-dev python3-pip apt-transport-https openjdk-8-jre wget zip build-essential libsnappy-dev libleveldb-dev liblz4-dev libbz2-dev && \
     rm -rf /var/lib/apt/lists/* && apt-get autoclean
-RUN pip3 install boto3 cloudpickle awscli &&\
-    pip3 install anadama2 && \
+RUN pip3 install boto3 cloudpickle awscli --break-system-packages &&\
+    pip3 install anadama2 --break-system-packages && \
     pip3 install kneaddata==${kneaddata_version} --no-binary :all:
 # install kneaddata and dependencies
 
