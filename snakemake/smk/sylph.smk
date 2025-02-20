@@ -36,5 +36,5 @@ rule sylph_clean:
     threads: 8
     shell:
     """
-    python {snakemake.input} {snakemake.output}
+    sylph-tax taxprof
     """
