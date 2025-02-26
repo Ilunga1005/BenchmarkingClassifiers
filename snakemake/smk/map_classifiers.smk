@@ -41,16 +41,17 @@ rule filter_quality_length:
     input:
         config['input']['fastq']
     output:
-        ROOT / 'input' / (Path(config['input']['fastq']).stem + '_HQ' + Path(config['input']['fastq']).suffix)
+        ROOT / 'input' / (Path(config['input']['fastq']).stem + '_HQ' + '.fq.gz')
     params:
         length = 1000,
         quality = 7
+    threads:8
     shell:
         """
         seqkit seq \
         -m {params.length} \
         -Q {params.quality} \
-        {input} > {output}
+        {input} --threads {threads} | pigz -p {threads} > {output}
         """
 
 rule stats_filtered_reads:

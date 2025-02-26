@@ -18,12 +18,13 @@ bracken:
   path: "/home/zhouan/Bracken/bracken"
   db_path: "/home/zhouan/Docker_dir/Classification/database/k2_pluspf_20240904"
 sylph:
-  path: "docker run --rm --user=`id -u`:`id -g` -v /home/zhouan/:/home/zhouan/ crpi-4wo2lf0nwtbkhda5.cn-hangzhou.personal.cr.aliyuncs.com/bgi_micro/sylph:v0.8.0 sylph"
-  db_path: "/home/zhouan/Docker_dir/Classification/database/sylph_db/gtdb-r220-c200-dbv1.syldb"
+  path: "/home/zhouan/miniconda3/envs/BenchmarkingClassifiers/bin/sylph"
+  db_path1: "/home/zhouan/Docker_dir/Classification/database/sylph_db/gtdb-r220-c200-dbv1.syldb"
+  db_path2: "/home/zhouan/Docker_dir/Classification/database/sylph_db/fungi-refseq-2025-02-19-c200.syldb"
   sylph_tax: "/home/zhouan/miniconda3/envs/BenchmarkingClassifiers/bin/sylph-tax"
-  sylph_tax: ""
+  sylph_tax_metadata: "/home/zhouan/Docker_dir/Classification/database/sylph_db/sylph_tax_db/gtdb_r220_plus_fungi_refseq_2025-02-19_metadata.tsv.gz"
 
- ################
+################
 # DEPENDENCIES #
 ################
 

@@ -41,22 +41,24 @@ update_classifier_names = {"bracken": "Bracken",
                            "kraken2": "Kraken2",
                            'metaphlan': 'MetaPhlAn3',
                            "mmseqs2": "MMSeqs2",
-                           'motus': 'mOTUs2'
+                           'motus': 'mOTUs2',
+                           'sylph': 'Sylph'
                            }
-list_abundance_classifiers = ['MetaPhlAn3', 'mOTUs2']
+list_abundance_classifiers = ['MetaPhlAn3', 'mOTUs2', 'Sylph']
 
 def main(data, output_plots, allowed_classifiers):
     ########################
     # READ IN GROUND TRUTH #
     ########################
-
+    # output_path / 'data'
+    # data = input
     theoretical_abundances = {}
     for ground_truth_file in data.parents[0].glob('ground_truth*_updated.yml'):
         with open(ground_truth_file, 'r') as f:
             theoretical_abundance = {'species': yaml.load(f, Loader=yaml.FullLoader)}
         theoretical_abundance['genus'] = {}
 
-        for k, v in theoretical_abundance['species'].items():
+        for k, v in theoretical_abundance['species'].items(): # .items() 是一个字典的方法，用来返回一个包含字典中所有键值对的可迭代对象。
             genus_name = k.split()[0]
             if genus_name in theoretical_abundance['genus']:
                 theoretical_abundance['genus'][genus_name] += v
@@ -92,16 +94,16 @@ def main(data, output_plots, allowed_classifiers):
         classifiers_input = []
 
         for input_classifier in sorted(data.glob(organism + '/' + '*.tsv')):
-            classifier_name = input_classifier.stem.split(sep='_')[-1]
+            classifier_name = input_classifier.stem.split(sep='_')[-1] # .stem 返回路径中的文件名部分，但不包含扩展名
             classifier_name_display = update_classifier_names.get(classifier_name, classifier_name)
             if allowed_classifiers == 'all' or classifier_name in allowed_classifiers:
                 classifier_table = pd.read_table(
-                    data_organism / input_classifier.name,
+                    data_organism / input_classifier.name, # .name，返回路径的最后一部分，即文件名（包括扩展名）
                     usecols=[0, 1],
                     index_col=0,
                     names=[None, classifier_name_display],
                     header=None
-                ).squeeze("columns")
+                ).squeeze("columns") # 检查 DataFrame 的列数，如果只有一列数据，它将把 DataFrame 转换为 Series，否则返回原始的 DataFrame。
                 classifiers_input.append(ClassificationResults(classifier_name_display, classifier_table, list_uc)) ## 储存每个分类器的结果例如[ClassificationResults(classifier='Kraken2',results=pd.Series([0.95, 0.87, 0.91, 0.50],index=['E_coli', 'S_aureus', 'B_subtilis', 'Unclassified']),names_unclassified=['Unclassified'])]
             logger.debug(f'Read in {input_classifier}')
 

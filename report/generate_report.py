@@ -116,7 +116,7 @@ class Report(object):
                             )
         parser.add_argument('--classifier',
                             choices={'bracken', 'desamba', 'mash', 'minimap2', 'kraken2', 'kma',
-                                     'metaphlan', 'centrifuge', 'mmseqs2', 'motus'},
+                                     'metaphlan', 'centrifuge', 'mmseqs2', 'motus', 'sylph'},
                             nargs='+',
                             default='all',
                             help='Which classifier(s) to use [all]',

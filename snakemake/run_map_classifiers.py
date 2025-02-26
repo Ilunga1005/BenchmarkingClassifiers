@@ -83,7 +83,7 @@ class Classifying(object):
                             nargs='+',
                             default=['bracken', 'ccmetagen', 'centrifuge', 'kaiju', 'kma', 'kraken2', 'metaphlan',
                                      # 'mmseqs2',
-                                     'motus'],
+                                     'motus','sylph'],
                             help='Which classifier(s) to use. \n'
                                  'Default choices are %(default)s; space separated.\n'
                                  'If not set, all default choices will be used.',

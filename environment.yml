@@ -19,5 +19,7 @@ dependencies:
   - pip
   - seqkit=2.3.1
   - taxonkit=0.15.0
+  - sylph=0.8.0
+  - 
   - pip:
       - pulp==2.7.0

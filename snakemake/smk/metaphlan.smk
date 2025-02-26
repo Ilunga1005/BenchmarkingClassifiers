@@ -83,6 +83,7 @@ rule metaphlan_taxonomy:
                ) \
               <(cut -f 2 {input.cleaned_abundance}) \
         > {output.cleaned_abundance_tax};
+        ### Genus_taxid Species_taxid   Abundance
         """
 
 rule metaphlan_output:
