@@ -4,7 +4,7 @@ import requests
 
 s = requests.Session()
 
-
+#### 代码切入点 -- 没有封装为函数的代码
 def fetch_reference_dataset_report(taxon, reference_only='true'):
     base_url = f'https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/taxon/{taxon}/dataset_report?'
     params = {f'filters.reference_only': {reference_only},
